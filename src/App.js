@@ -32,15 +32,15 @@ class App extends React.Component {
     })
   }
 
-  constructor() {
-    super();
-    this.handleAdd = this.handleAdd.bind(this);
-  }
+  // constructor() {
+  //   super();
+  //   this.handleAdd = this.handleAdd.bind(this);
+  // }
 
   render() {
     let tasks = this.state.tasks.map((task, index) => {
       return (
-        <Task deleteTask={this.handleDelete} title={task.title} body={task.body} key={task.title}/>
+        <Task deleteTask={this.handleDelete} addTask={this.handleAdd} title={task.title} body={task.body} key={task.title}/>
       )
     })
 
@@ -49,10 +49,10 @@ class App extends React.Component {
         <NavBar counter={this.state.tasks.length}/>
         <div className="row">
           {
-            this.state.tasks.length == 0 ? <ZeroTask/> : tasks
+            this.state.tasks.length === 0 ? <ZeroTask/> : tasks
           }
         </div>
-        <ModalFloatingButton addTask={this.handleAdd}/>
+        <ModalFloatingButton addTask={this.handleAdd} x={5}/>
       </div>
     );
   }

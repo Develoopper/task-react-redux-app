@@ -4,6 +4,8 @@ import "materialize-css/dist/css/materialize.min.css";
 import AddTask from "./AddTask"
 
 class Modal extends Component {
+  state = { title: "", body: "" }
+
   componentDidMount() {
     const options = {
       onOpenStart: () => {
@@ -33,6 +35,17 @@ class Modal extends Component {
     // instance.destroy();
   }
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
+
+  handleClickAdd = () => {
+    this.props.addTask(this.state);
+    this.setState({ title: "", body: "" })
+  }
+
   render() {
     return (
       <div>
@@ -55,8 +68,8 @@ class Modal extends Component {
             modal-fixed-footer to the "modal" div */
           }
           <div className="modal-content" style={{textAlign: "left"}}>
-          <h4>New task</h4>
-            <AddTask/>
+            <h4>New task</h4>
+            <AddTask change={this.handleChange} formValue={this.state}/>
           </div>
           <div className="modal-footer">
             <a className="modal-close btn-flat">
@@ -67,7 +80,7 @@ class Modal extends Component {
               className="btn grey darken-3 m3 modal-close"
               type="submit"
               name="action"
-              onClick={() => this.props.handleAdd({title: "Task8", body: "Body8"})}
+              onClick={this.handleClickAdd}
             >
               Add
               <i className="material-icons right">add</i>
