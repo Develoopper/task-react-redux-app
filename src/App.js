@@ -40,7 +40,7 @@ class App extends React.Component {
   render() {
     let tasks = this.state.tasks.map((task, index) => {
       return (
-        <Task deleteTask={this.handleDelete} addTask={this.handleAdd} title={task.title} body={task.body} key={task.title}/>
+        <Task deleteTask={this.handleDelete} addTask={this.handleAdd} title={task.title} body={task.body} key={index}/>
       )
     })
 

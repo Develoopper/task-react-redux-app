@@ -4,7 +4,9 @@ import "materialize-css/dist/css/materialize.min.css";
 import AddTask from "./AddTask"
 
 class Modal extends Component {
-  state = { title: "", body: "" }
+  state = { 
+    formValues: { title: "", body: "" }
+   }
 
   componentDidMount() {
     const options = {
@@ -37,16 +39,23 @@ class Modal extends Component {
 
   handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
+      formValues: {
+        [e.target.id]: e.target.value
+      }
     })
   }
 
   handleClickAdd = () => {
-    this.props.addTask(this.state);
-    this.setState({ title: "", body: "" })
+    this.props.addTask(this.state.formValues);
+    console.log(this.state.formValues);
+    this.setState({
+      formValues: {title: "", body: "" }
+    })
+
   }
 
   render() {
+    console.log(this.state.formValues);
     return (
       <div>
         <div className="fixed-action-btn">
@@ -69,7 +78,7 @@ class Modal extends Component {
           }
           <div className="modal-content" style={{textAlign: "left"}}>
             <h4>New task</h4>
-            <AddTask change={this.handleChange} formValue={this.state}/>
+            <AddTask change={this.handleChange} formValues={this.state.formValues}/>
           </div>
           <div className="modal-footer">
             <a className="modal-close btn-flat">
@@ -77,7 +86,7 @@ class Modal extends Component {
               <i className="material-icons right">close</i>
             </a>
             <button
-              className="btn grey darken-3 m3 modal-close"
+              className="btn grey darken-3 m3 "
               type="submit"
               name="action"
               onClick={this.handleClickAdd}

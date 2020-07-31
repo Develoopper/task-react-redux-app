@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function AddTask({change, formValue}) {
+export default function AddTask({change, formValues}) {
     return (
 		<div>
 			<div className="input-field col s6 m3 white">
@@ -11,7 +11,7 @@ export default function AddTask({change, formValue}) {
 					className="validate" 
 					style={{backgroundColor: "#fafafa"}}
 					onChange={change}
-					text={formValue.title}
+					value={formValues.title}
 				/>
 			</div>
 
@@ -22,7 +22,7 @@ export default function AddTask({change, formValue}) {
 					className="materialize-textarea" 
 					style={{backgroundColor: "#fafafa"}}
 					onChange={change}
-					text={formValue.body}
+					value={formValues.body}
 				/>
 			</div>
 		</div>
