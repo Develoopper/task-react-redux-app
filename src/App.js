@@ -1,9 +1,6 @@
 import React from "react";
 import NavBar from "./components/NavBar"
-import Task from "./components/Task"
-import ZeroTask from "./components/ZeroTask"
 import "./App.css";
-import ModalFloatingButton from "./components/ModalFloatingButton";
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import AllTasksPage from "./pages/AllTasksPage";
 import SingleTaskPage from "./pages/SingleTaskPage";
