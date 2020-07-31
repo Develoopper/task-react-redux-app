@@ -86,7 +86,7 @@ class Modal extends Component {
               <i className="material-icons right">close</i>
             </a>
             <button
-              className="btn grey darken-3 m3 "
+              className="btn grey darken-3 m3 modal-close"
               type="submit"
               name="action"
               onClick={this.handleClickAdd}
