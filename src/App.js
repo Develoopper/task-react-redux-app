@@ -4,31 +4,19 @@ import Task from "./components/Task"
 import ZeroTask from "./components/ZeroTask"
 import "./App.css";
 import ModalFloatingButton from "./components/ModalFloatingButton";
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import AllTasksPage from "./pages/AllTasksPage";
+import SingleTaskPage from "./pages/SingleTaskPage";
 
 class App extends React.Component {
 
   state = {
-    tasks: [
-      {title: "Task1", body: "Body1"},
-      {title: "Task2", body: "Body2"},
-      {title: "Task3", body: "Body3"},
-      {title: "Task4", body: "Body4"},
-      {title: "Task5", body: "Body5"},
-      {title: "Task6", body: "Body6"},
-      {title: "Task7", body: "Body7"},
-    ]
+    counter: 0
   }
 
-  handleDelete = (title) => {
-    let tasks = this.state.tasks.filter((task) => {return task.title !== title})
+  setCounter = (counter) => {
     this.setState({
-      tasks
-    })
-  }
-
-  handleAdd = (task) => {
-    this.setState({
-      tasks: [...this.state.tasks, task]
+      counter
     })
   }
 
@@ -38,22 +26,16 @@ class App extends React.Component {
   // }
 
   render() {
-    let tasks = this.state.tasks.map((task, index) => {
-      return (
-        <Task deleteTask={this.handleDelete} addTask={this.handleAdd} title={task.title} body={task.body} key={index}/>
-      )
-    })
-
     return (
-      <div className="App">
-        <NavBar counter={this.state.tasks.length}/>
-        <div className="row">
-          {
-            this.state.tasks.length === 0 ? <ZeroTask/> : tasks
-          }
+      <Router>
+        <div className="App">
+          <NavBar counter={this.state.counter}/>
+          <Switch>
+            <Route path="/" exact render={(props) => <AllTasksPage {...props} setCounter={"this.setCounter"} />}/>
+            <Route path="/:title" component={SingleTaskPage}/>
+          </Switch>
         </div>
-        <ModalFloatingButton addTask={this.handleAdd} x={5}/>
-      </div>
+      </Router>
     );
   }
 }

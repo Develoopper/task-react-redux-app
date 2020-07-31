@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
-import AddTask from "./AddTask"
+import AddTask from "./AddTaskForm"
 
 class Modal extends Component {
   state = { 

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 export default function Task({title, body, deleteTask}) {
 	return (
@@ -14,9 +15,9 @@ export default function Task({title, body, deleteTask}) {
 					<a href="#" onClick={() => deleteTask(title)}>
 						<i className="small material-icons">clear</i>
 					</a>
-					<a href="#">
-						<i className="small material-icons">check</i>
-					</a>
+					<Link to={"/" + title}>
+						<i className="small material-icons">info_outline</i>
+					</Link>
 				</div>
 
 			</div>
